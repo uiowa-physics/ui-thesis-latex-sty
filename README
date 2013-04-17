@@ -1,0 +1,25 @@
+UI Dissertation in LaTeX
+
+Instructions - Courtesy of Alex Bulmahn
+
+This directory (and links here) holds everything needed to write a dissertation in TeX for the University of Iowa. The uithesis03.sty file has been modified to meet the current formatting requirements (as of Spring 2010). Using the uidiss10.sty file, my dissertation has been accepted by the graduate college.
+
+The main file is dissertation.tex. It brings in a number of separate files, but this file is the file that is "latexed" and eventually printed. You also need:
+
+The title, author, advisor, date, abstracts, dedications, and copyright details are all done in the prelude.tex file.
+The newcom.tex file is for any new commands you want to specifiy. The ones that I used to make math formulas easier are in this file.
+For the text of your thesis, you may either have separated files for the chapters, or put it all together in one tex file separating chapters using the \Chapter command. Your choice although it might be easier to keep track of things and edit with separated text files. This is what I did with ch1.tex and ch2.tex.
+The file app0.tex is needed for some odd reason to get the Appendix correctly put into the table of contents. I also have the real Appendix in app1.tex.
+The bibliography via bibliography.tex is included as well.
+When you LaTeX the thesis, you may get warnings (with questions) - just hit return each time. It will work out fine.
+
+There is one screwy thing that needs to be done and here it is so pay attention: The List of Tables and List of Figures is generated automatically when you build dissertation.tex. The Lists dissertation.lot (tables) and dissertation.lof (figures) files are written and then used in subsequent builds. (That is why you need to LaTeX twice.) The graduate college requires that there be one blank line between each entry in these lists. I could never figure out how to write this into the style file so here is how I went about it. You should make a copy of dissertation.lof (.lot) and give it a new name. Between each caption in this file, write in \vskip 1\li to skip one line. Before you do your last build (last LaTeX), copy the file back to dissertation.lof (.lot). Latex will use this file to write the lists. **Do Not build another time because this will put in the Lists without the blank lines.** Each build will rewrite the .lot and .lof files that is used on subsequent builds.
+
+The result, before editing the Lists is dissertation.dvi.
+
+The links above to the tex files can be viewed on the web browser with
+
+www-hep.physics.uiowa.edu/~reno/dissertation/dissertation.html
+www-hep.physics.uiowa.edu/~reno/dissertation/prelude.html
+www-hep.physics.uiowa.edu/~reno/dissertation/chapters.html
+Any further questions can be directed to alex.bulmahn@gmail.com.

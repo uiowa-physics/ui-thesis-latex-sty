@@ -1,0 +1,760 @@
+% uithesis03.sty (LaTeX 2e thesis style file, version 0.3)
+%
+% February 20, 1999
+%
+% Purpose: for assistance in writing a mathematical/statistical Ph.D.
+%   thesis at the University of Iowa
+%
+% For help & examples, see http://www.stat.uiowa.edu/~jcaste
+%
+% Most recent author: John Castelloe (JMC)
+%   (http://www.stat.uiowa.edu/~jcaste)
+%
+% List of commands that you would typically use from this file in your
+%   own thesis:
+% \singlespace, \doublespace
+% \Chapter
+% \section, \subsection, \subsubsection
+% \appendix, \Appendix
+% \references
+% \abtitlepg, \abtitlepgfalse
+% \abstractpgtrue, \abstractpgfalse
+% \titlepgtrue, \titlepgfalse
+% \copyrighttrue, \copyrightfalse
+% \signaturepagetrue, \signaturepagefalse
+% \dedicationtrue, \dedicationfalse
+% \acktrue, \ackfalse
+% \abswithesistrue, \abswithesisfalse
+% \tablecontentstrue, \tablecontentsfalse
+% \tablespagetrue, \tablespagefalse
+% \figurespagetrue, \figurespagefalse
+% \title, \author, \advisor, \submitdate
+% \beforepreface, \afterpreface
+% 
+% List of commands you would typically define in another file, for use
+%   in this file:
+% \abstextwithesis
+% \abstracttext
+% \dedication
+% \ackknowledgement
+%
+% Recent changes:
+%
+% 12/09/98 (JMC) (most marked with %BEGIN JMC and %END JMC):
+% - Updated figure and table numbering to follow section numbers and
+%   work correctly with appendices
+% - Changed chapter numbers to arabic style
+% - Changed \section, \subsection and \subsubsection commands to comply
+%   with the maximum width of 4 inches for titles
+% - Updated \appendix command, which should be called ONCE before
+%   appendices begin (sets chapter numbering to alphabetical and updates
+%   section and equation numbering as necessary)
+% - Added \Appendix command, which should be used in place of \Chapter for
+%   appendices
+% - Added \references command (which currently just changes spacing-- it
+%   could be changed to automatically add a table of contents entry)
+% - Added \listoftables command (necessary for proper formatting of list
+%   of tables)
+% - Added \abswithesis flag and separated the two versions of the abstract:
+%   \abstracttext (for separate abstract with title page) and
+%   \abstextwithesis (to be bound with thesis)
+% - Changed order of different parts of the preliminaries (to comply with
+%   the order in which they should be in the thesis)
+% - Corrected page numbering styles for different parts of the
+%   preliminaries to comply with requirements
+% - Made numerous other small changes in various places
+
+% Previous documentation:
+
+ %      To:  division@cs.uiowa.edu
+ %    From:  Larry Peterson
+ %    Date:  July 6, 1998
+ % Subject:  LaTeX2e style file
+ %
+ % This file is a style file that you can use for writing a Ph.D.
+ % thesis using LaTeX2e.  This may be of interest to you or to your
+ % students.  The purpose of this file is to make LaTeX set up the
+ % document so that it complies with the rules of margins and spacing
+ % that the Graduate College has established.
+ %
+ % There is a file called uithesis.sty which is widely distributed and
+ % which you can use as a style file for a thesis.  The problem I had with
+ % uithesis.sty was that it did not work with LaTeX2e.  That is, if I
+ % had a "documentclass" command at the top of my file, then LaTeX would not
+ % work with the uithesis.sty file.
+ %
+ % In the file below, I have taken uithesis.sty and made the necessary
+ % modifications so that it now works with LaTeX2e, that is, with the
+ % documentclass command at the top of the file.  I developed my thesis
+ % with this file, and the Graduate College has accepted the final deposit.
+ % I did not use all of the options associated with this style file.  For
+ % example, I did not make a list of tables, and I did not make a dedication
+ % page.
+ %
+ % I encourage everyone to use LaTeX2e instead of earlier versions of
+ % LaTeX and to use "documentclass" instead of "documentstyle."  There are
+ % certain things you can do with the new version that you supposedly
+ % cannot do with earlier versions.
+ %
+ % If any of you have better style files for LaTeX2e theses, if you
+ % know of such files which are available by ftp, or if you have any
+ % comments, then you may wish to let the rest of us know.
+ %
+ % Best,
+ %
+ % Larry
+ %
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %
+ % This is the style file that you can use for
+ % your thesis to make the margins, layout, etc., conform to the rules
+ % established by the Graduate College.  
+ % If you have a \documentstyle command at the beginning of
+ % your file, then apparently LaTeX thinks it is a LaTeX 2.09 file.
+ % I am adapting this file for use by LaTeX 2e
+ % You are supposed to give this file a name ending in .sty.  Then
+ % reference it from your main file using a \usepackage command.  To use the
+ % features of LaTeX 2e, you should put a \documentclass command (not a
+ % \documentstyle command) into your main file.
+ %
+ % To adequately use this style file, you will need to insert certain other
+ % commands into your files.  The best way to learn how to do this is to
+ % take a look at the files from someone else's thesis.
+ %
+ % Record of changes:
+ % 06/08/98 Adding .05in to \headsep, -.05in to \topmargin, .06in to
+ %	   \footskip
+ % 06/03/98 Changing \singlespace from 1.0\li to 1.1\li
+ % 06/03/98 In \renewcommand{\@makechapterhead}[1],
+ %	   \renewcommand{\@makeschapterhead}[1], and
+ %	   \prefacesection, changing
+ %	   \null\vskip .55in to \null\vskip .50in
+ % 06/02/98 Inserting command    \renewcommand{\listoffigures}
+ %				{\chapter*{LIST OF FIGURES}\@starttoc{lof}}
+ %			to make list of figures have heading in capital
+ %			letters.
+ %	   In \renewcommand{\@makechapterhead}[1], replacing
+ %	   {\null\vskip .45in with {\null\vskip .55in to make chapter
+ %	   headings two inches from top of page.
+ %	   Changing ``acknowledgements'' to ``acknowledgments''
+ %	   In \prefacesection, changing \null\vskip .45in to
+ %	   \null\vskip .55in to make abstract and acknowledgments
+ %	   headings come two inches below the top of the page.
+ % 03/14/98 Lots more changes
+ % 03/09/98 Setting some flags to true:  titlepg, abstractpg, ack,
+ %	   figurespage, reordering preliminaries
+ % 08/26/97 Increasing \headsep from .30in to .35in
+ % 08/24/97 Reducing \textwidth by .12in
+ % 05/15/97 replacing all occurrences of \th with \thnew to allow
+ %          compatibility with LaTeX 2e
+ % 05/15/97 setting all flags to false.  See comments at end of this file.
+
+\newcommand{\xyztf}{true}
+\makeatletter \voffset=-.20in \hoffset=0.00in \oddsidemargin 0.54in
+\evensidemargin 0.54in \marginparwidth 40pt \marginparsep 10pt
+\topmargin 0pt \headsep .00in		%changing \headsep, 8/26/97
+%\topmargin 0pt \headsep .35in
+\addtolength{\headsep}{.05in}
+\addtolength{\topmargin}{-.05in}
+%
+\footskip 44pt
+\addtolength{\footskip}{.06in}
+\newlength{\tw} \setlength{\tw}{6in}
+\newlength{\thnew} \setlength{\thnew}{8.8in plus 0.50in} %changed from 8.3in reduced empty space at bottom of page
+\newlength{\li} \setlength{\li}{12pt}
+\newlength{\si} \setlength{\si}{.4in}  
+\setlength{\parindent}{\si}
+\textheight \thnew \textwidth \tw
+\brokenpenalty=10000
+\addtolength{\textwidth}{-0.12in}	%Adding this line, 8/24/97.
+
+\setlength{\parindent}{\si}
+\newcommand{\singlespace}{\baselineskip 1.1\li}
+\newcommand{\doublespace}{\baselineskip 2.0\li}
+
+\newcommand{\setsty}{	\setlength{\parindent}{\si}
+			\setlength{\parsep}{0pt}
+			\setlength{\topsep}{0pt}
+			\setlength{\parskip}{0pt}
+			\setlength{\partopsep}{0pt}
+			\setlength{\itemsep}{0pt}
+			\setlength{\abovedisplayskip}{6pt}%{0pt} %spaces eqns better
+			\setlength{\belowdisplayskip}{6pt}%{0pt}
+			\setlength{\abovedisplayshortskip}{0pt}
+			\setlength{\belowdisplayshortskip}{0pt} 
+			\setcounter{topnumber}{3}
+			\setcounter{bottomnumber}{2}
+			\setlength{\floatsep}{3\li}
+			\setlength{\textfloatsep}{3\li}
+			\setlength{\intextsep}{2\li} 
+			\renewcommand{\arraystretch}{1.65}
+			\renewcommand{\topfraction}{1.0}
+			\renewcommand{\bottomfraction}{1.0}
+ 	 		\renewcommand{\textfraction}{0} }
+
+
+\def\cl@chapter{\@elt{section}\@elt{footnote}}
+%BEGIN JMC
+% (original) \def\thefigure{\@arabic\c@figure}
+% (original) \def\thetable{\@arabic\c@table}
+\def\thefigure{\arabic{chapter}.\arabic{figure}}
+\def\thetable{\arabic{chapter}.\arabic{table}}
+%END JMC
+\def\theequation{\arabic{chapter}.\arabic{equation}}
+
+\newtoks\@stequation
+\def\subequations{\refstepcounter{equation}%
+  \edef\@savedequation{\the\c@equation}%
+  \@stequation=\expandafter{\theequation}%   %only want \theequation
+  \edef\@savedtheequation{\the\@stequation}% %expanded once
+  \edef\oldtheequation{\theequation}%
+  \setcounter{equation}{0}%
+  \def\theequation{\oldtheequation\alph{equation}}}%
+
+
+\def\endsubequations{%
+  \setcounter{equation}{\@savedequation}%
+  \@stequation=\expandafter{\@savedtheequation}%
+  \edef\theequation{\the\@stequation}\global\@ignoretrue}
+%%%----------------------------
+
+\def\@xfloat#1[#2]{\ifhmode \@bsphack\@floatpenalty -\@Mii\else
+   \@floatpenalty-\@Miii\fi\def\@captype{#1}\ifinner
+      \@parmoderr\@floatpenalty\z@
+    \else\@next\@currbox\@freelist{\@tempcnta\csname ftype@#1\endcsname
+       \multiply\@tempcnta\@xxxii\advance\@tempcnta\sixt@@n
+       \@tfor \@tempa :=#2\do
+                        {\if\@tempa h\advance\@tempcnta \@ne\fi
+                         \if\@tempa t\advance\@tempcnta \tw@\fi
+                         \if\@tempa b\advance\@tempcnta 4\relax\fi
+                         \if\@tempa p\advance\@tempcnta 8\relax\fi
+         }\global\count\@currbox\@tempcnta}\@fltovf\fi
+    \global\setbox\@currbox\vbox\bgroup 
+    \def\baselinestretch{1}\@normalsize
+    \boxmaxdepth\z@
+    \hsize\columnwidth \@parboxrestore} 
+
+%BEGIN JMC
+% (original) \newcommand{\Chapter}[1]{\def\thechapter{\Roman{chapter}}
+\newcommand{\Chapter}[1]{\def\thechapter{\arabic{chapter}}
+            \renewcommand{\myvskip}{.50in}
+            \setcounter{equation}{0}
+			\setcounter{figure}{0}
+            \setcounter{table}{0}
+%END JMC
+                        \chapter{#1}
+			\thispagestyle{myheadings}
+                        \addtocontents{toc}{\protect\vspace{0\li}}
+                        \addtocontents{toc}{\protect\vspace{1\li}}}
+
+%BEGIN JMC
+\newcommand{\myvskip}{.50in}
+%END JMC
+
+\renewcommand{\@chapapp}{CHAPTER}
+\renewcommand{\@makechapterhead}[1]
+	{\null\vskip .00in  %raises chapter heading 4-21-10 
+%BEGIN JMC
+% (original)	{\null\vskip .50in 
+%    {\null\vskip \myvskip         %changed 4-15-10
+%END JMC
+ 	\begin{center}
+%		{\normalsize 
+		{\normalsize \bf
+		\ifnum \c@secnumdepth >\m@ne 
+		       \@chapapp~\thechapter \vskip .6ex \fi
+		\uppercase{#1} \vskip 1\li}    %changed from 2 4-21-10 spacing between ch and sec
+	\end{center} 
+        \def\thechapter{\arabic{chapter}}
+	\setsty}
+
+\renewcommand{\@makeschapterhead}[1]
+%BEGIN JMC
+% (original)	{\null\vskip .50in 
+    {\null\vskip %\myvskip took out vkip to raise table headings 4-21-10
+%END JMC
+ 	\begin{center}
+		{\normalsize \bf \uppercase{#1 \vskip 3\li}}   %3\li moves entries in tables 4-21-10
+	\end{center} 
+	\setsty}
+
+\setcounter{secnumdepth}{3}
+
+%BEGIN JMC
+%(original)\renewcommand{\section}{\vspace*{1\li}\@startsection{section}
+%(oritinal) {1}{\z@}
+% (original)		{0\li} {1pt} {\center \normalsize \bf}}
+% (original) \renewcommand{\subsection} {\@startsection{subsection}{2}{\z@}
+% (original)        {1\li} {1pt} {\center \normalsize \rm}}
+% (original) \renewcommand{\subsubsection}{\@startsection{subsubsection}
+% (original)  {3}{\z@}
+% (original)		{1\li} {1pt} {\center \normalsize \rm}}
+\renewcommand{\section}{\vspace*{0\li}\@startsection{section}{1}{\z@}
+%  changed vspace from .9li to 0li  shrinks room between ch and sect 4-15-10
+        {1\li} {1pt} {\normalsize \bf \noindent 
+		\parbox[b][1.5\totalheight][b]{4in}}}
+\renewcommand{\subsection} {\vspace*{.9\li}\@startsection{subsection}{2}
+        {\z@}{1\li} {1pt} {\normalsize \rm \noindent
+		\parbox[b][1.5\totalheight][b]{4in}}}
+\renewcommand{\subsubsection}{\vspace*{.9\li}\@startsection{subsubsection}
+        {3}{\z@} {1\li} {1pt} {\normalsize \rm \noindent
+		\parbox[b][1.5\totalheight][b]{4in}}}
+%END JMC
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\z@}
+		{1\li} {1pt} {\normalsize \em}}
+\renewcommand{\subparagraph}{\@startsection{subparagraph}{4}{\z@}
+		{1\li} {1pt} {\normalsize \rm}}
+
+%BEGIN JMC
+% (original) \renewcommand{\appendix}{\par \setcounter{chapter}{0}
+% (original)   \setcounter{section}{0}
+% (original)   \def\@chapapp{APPENDIX}\def\thechapter{\Alph{chapter}}}
+\renewcommand{\appendix}{\par \setcounter{chapter}{0}
+      \setcounter{section}{0}
+      \def\@chapapp{APPENDIX}\renewcommand{\thechapter}{\Alph{chapter}}
+	  \renewcommand{\thesection}{\Alph{chapter}.\arabic{section}}
+	  \renewcommand{\thesubsection}
+	  {\Alph{chapter}.\arabic{section}.\arabic{subsection}}
+      \renewcommand{\theequation}{\Alph{chapter}.\arabic{equation}}
+      \renewcommand{\thefigure}{\Alph{chapter}.\arabic{figure}}
+      \renewcommand{\thetable}{\Alph{chapter}.\arabic{table}}
+    \renewcommand{\myvskip}{0.0in}  %sets app and ref start pt--changed 2-3
+        \addtocontents{toc}{\protect\vspace{\li}}   %spacing 4-13-10
+%if you do not have sections in your last chapter comment out the above line
+        %\addtocontents{toc}{\protect\vspace{-\li}}
+		\addtocontents{toc}{\hspace{-32pt} APPENDIX}
+        \addtocontents{toc}{\protect\vspace{\li}}}
+% (put space between designator and title) \newcommand{\Appendix}[1]
+%   {\chapter[#1]{\vspace{1\li}#1}
+\newcommand{\Appendix}[1]{ \chapter{#1}
+	   \thispagestyle{myheadings}
+       \addtocontents{toc}{\protect\vspace{0\li}}
+       %\addtocontents{toc}{\protect\vspace{1\li}}
+       \setcounter{figure}{0} 
+       \setcounter{table}{0} 
+       \renewcommand{\thechapter}{\Alph{chapter}}
+       \renewcommand{\thesection}{\Alph{chapter}.\arabic{section}}
+	   \renewcommand{\thesubsection}
+	   {\Alph{chapter}.\arabic{section}.\arabic{subsection}}
+       \renewcommand{\theequation}{\Alph{chapter}.\arabic{equation}}
+       \renewcommand{\thefigure}{\Alph{chapter}.\arabic{figure}} }
+% \appendix should be declared ONCE, before all \Appendix's
+%END JMC
+    
+%BEGIN JMC
+\newcommand{\references}
+      {\renewcommand{\myvskip}{0.5in}
+        %\addtocontents{toc}{\protect\vspace{\li}}  %new
+	%\addtocontents{toc}{\hspace{-32pt} REFERENCES}
+        %\addtocontents{toc}{\protect\vspace{\li}}
+}    
+%END JMC
+
+\renewcommand{\tableofcontents}
+  {\chapter*{TABLE OF CONTENTS}\@starttoc{toc}}
+	%{\begin{center}
+	%TABLE
+	%\end{center}\@starttoc{toc}}
+\renewcommand{\listoffigures}
+  {\chapter*{LIST OF FIGURES}\@starttoc{lof}}
+%BEGIN JMC
+\renewcommand{\listoftables}   {\chapter*{LIST OF TABLES}\@starttoc{lot}}
+%END JMC
+\newcommand{\l@head}            {\@dottedtocline{0}{0.0em}{1.5em}}
+\renewcommand{\l@chapter}       {\rule[0pt]{0em}{0pt}
+				 \@dottedtocline{0}{2.0em}{1.5em}}
+\renewcommand{\l@section}       {\@dottedtocline{1}{3.5em}{2.3em}}
+\renewcommand{\l@subsection}    {\@dottedtocline{2}{5.8em}{3.2em}}
+\renewcommand{\l@subsubsection} {\@dottedtocline{3}{9.0em}{4.1em}}
+\renewcommand{\l@paragraph}     {\@dottedtocline{4}{11em}{5em}}
+\renewcommand{\l@subparagraph}  {\@dottedtocline{5}{13em}{6em}}
+ 
+\renewcommand{\ps@myheadings} 	{\let\@mkboth\@gobbletwo
+	\def\@oddhead{\hfil \rm\thepage}
+	\def\@oddfoot{}
+	\def\@evenhead{\rm \thepage\hfil}
+	\def\@evenfoot{}
+	\def\sectionmark##1{}\def\subsectionmark##1{}}
+
+\def\thebibliography#1{\chapter*{References\markboth
+  {REFERENCES}{REFERENCES}}\list
+  {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}
+    \thispagestyle{myheadings}
+    \leftmargin\labelwidth
+    \raggedbottom
+    \advance\leftmargin\labelsep
+    \usecounter{enumi}}
+    \singlespace
+    \vskip -.5in
+    \itemsep 1\li
+    \def\newblock{\hskip .11em plus .33em minus -.07em}
+    \sfcode`\.=1000\relax}
+    			
+\vskip 1.0em plus 1pt 
+\def\dept#1{\gdef\@dept{#1}}
+\def\advisor{\gdef\@advisor}
+\def\submitdate#1{\gdef\@submitdate{#1}}
+\def\copyrightyear#1{\gdef\@copyrightyear{#1}} 
+\def\@title{}
+\def\@author{}
+\def\@dept{}
+\def\@submitdate{\ifcase\the\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space \number\the\year}
+\ifnum\month=12
+    \@tempcnta=\year \advance\@tempcnta by 1
+    \edef\@copyrightyear{\number\the\@tempcnta}
+\else
+    \def\@copyrightyear{\number\the\year}
+\fi
+
+\newif\ifabtitlepg	\abtitlepgfalse		%true
+\newif\ifabstractpg	\abstractpgfalse     	%true
+\newif\iftitlepg 	\titlepgfalse		%true
+\newif\ifcopyright	\copyrightfalse
+\newif\ifsignaturepage	\signaturepagefalse	%true
+\newif\ifdedication	\dedicationfalse
+\newif\ifack      	\ackfalse		%true
+\newif\iftablecontents  \tablecontentstrue 	%true
+\newif\iftablespage	\tablespagefalse
+\newif\iffigurespage	\figurespagetrue   	%true
+%BEGIN JMC
+\newif\ifabswithesis \abswithesistrue     	%true
+%END JMC
+
+\def\abtitlepg{%
+%BEGIN JMC
+\newpage
+%END JMC
+	\thispagestyle{empty}%
+	\singlespace
+        \null\vskip 1.25in%
+	\begin{center}
+		{\normalsize\uppercase\expandafter{\@title}}
+	\end{center}
+	\vfill
+	\begin{center}
+	   \rm 	by\\
+                \vskip \li
+		\singlespace
+		\@author
+	\end{center}
+	\vfill
+	\begin{center}
+           {\rm	\underline{An Abstract}\\
+                \vskip \li 
+   	        Of a thesis submitted in partial fulfillment of the\\
+                requirements for the Doctor of Philosophy\\
+                degree in {\@dept} in the\\
+                Graduate College of The\\
+                University of Iowa}
+	\end{center}
+	\vskip 2\li
+	\begin{center}
+          \rm \@submitdate 
+	\end{center}
+	\vskip 2\li 
+	\begin{center}
+          \rm Thesis Supervisor: \@advisor
+	\end{center}
+        %\vskip.5in
+}
+
+
+
+\def\abstractpg{
+	\newpage
+	\pagenumbering{arabic}
+%BEGIN JMC
+	\setcounter{page}{1}
+%END JMC
+	\markboth{\thepage}{\thepage}
+	\pagestyle{myheadings}
+        \doublespace
+	\prefacesection{Abstract}
+	\abstracttext  
+        %\vfill    
+	%I replaced this by vskip to put approval closer to end of abstract.
+%BEGIN JMC
+% (original)	\vskip 6\li  %6 may be changed to adjust spacing.
+        \vskip 4\li
+%END JMC
+%BEGIN JMC
+%(original)    \singlespace
+%(original)    \hspace*{1.5in}  Abstract approved:  \hrulefill
+%(original)    \newline\hspace*{3.35in} \raisebox{6.8mm}{Thesis supervisor}
+%(original)    \newline\hspace*{3.35in} \hrulefill 
+%(original)    \newline\hspace*{3.35in} \raisebox{6.8mm}
+%(original)         {Title and department }
+%(original)    \newline\hspace*{3.35in} \hrulefill 
+%(original)    \newline\hspace*{3.35in} \raisebox{6.8mm}{Date}
+        \singlespace
+        \hspace*{1.5in}  Abstract Approved:  \hrulefill
+        \newline\hspace*{3.35in} \raisebox{6.8mm}{Thesis Supervisor}
+        \newline\hspace*{3.35in} \hrulefill 
+        \newline\hspace*{3.35in} \raisebox{6.8mm}{Title and Department }
+        \newline\hspace*{3.35in} \hrulefill 
+        \newline\hspace*{3.35in} \raisebox{6.8mm}{Date}
+%END JMC
+	}
+
+
+\def\abswithesis{
+	\newpage
+	\pagestyle{plain}
+	\markboth{\thepage}{\thepage}
+        \doublespace
+	\prefacesection{Abstract}
+	\abstextwithesis
+	}
+
+\def\titlepg{%
+	\newpage
+	\pagenumbering{roman}		% 3/14/98
+	\thispagestyle{empty}%
+	\singlespace
+        \null\vskip1.25in%
+	\begin{center}
+		{\normalsize\uppercase\expandafter{\@title}}
+	\end{center}
+	\vfill
+	\begin{center}
+	   \rm 	by\\
+                \vskip \li
+		\singlespace
+		\@author\\
+	\end{center}
+	\vfill
+	\begin{center}
+           {\rm	
+                \vskip \li 
+   	        A thesis submitted in partial fulfillment of the\\
+                requirements for the Doctor of Philosophy\\
+                degree in {\@dept} in the\\
+                Graduate College of The\\
+                University of Iowa}
+	\end{center}
+	\vskip 2\li
+	\begin{center}
+          \rm \@submitdate \\
+	\end{center}
+	\vskip 2\li 
+	\begin{center}
+          \rm Thesis Supervisor: \@advisor\\
+	\end{center}
+        \vskip.5in}
+
+\def\copyrightpage{%
+	\newpage
+	\null\vfill
+%BEGIN JMC
+	\thispagestyle{empty}%
+%END JMC
+	\begin{center}
+		{\normalsize Copyright by\\ \vskip 1pt  
+		{\normalsize\uppercase\expandafter{\@author}}\\ \vskip 1 pt
+		1998\\ \vskip 1pt
+                All Rights Reserved}
+	\end{center}
+	\vskip 1.0in
+	\vfill}
+
+
+\def\signaturepage{%
+	\newpage
+	\pagenumbering{roman}			%3/14/98
+%BEGIN JMC
+	\setcounter{page}{1}
+%END JMC
+	\null%
+	\thispagestyle{empty}%
+	\begin{center}
+           \singlespace
+           \rm	Graduate College\\
+ 		The University of Iowa\\
+		Iowa City, Iowa\\
+                \vfill
+		CERTIFICATE OF APPROVAL\\
+          	\vfill
+		\rule{2.4in}{0.4pt}
+          	\vfill
+                \vskip .1in   %spacing 4-13-10 to center 
+                PH.D. THESIS
+                \vskip .27in
+          	%\vfill
+		\rule{1.1in}{0.4pt} 
+	\end{center}
+        \vfill
+        \hspace*{1.535in} This is to certify that the Ph.D. thesis of 
+      	\vspace*{4ex}
+	\begin{center}
+		\@author  
+	\end{center}
+       	\vspace*{4ex}
+        \singlespace
+        \hspace*{1.54in} has been approved by the Examining Committee  \\
+        \hspace*{1.54in} for the thesis requirement for the Doctor of  \\
+        \hspace*{1.54in} Philosophy degree in {\@dept} at the 
+		  {\@submitdate}\\
+        \hspace*{1.54in} graduation. 
+        \vfill
+        \hspace*{1.41in} Thesis Committee:  \hrulefill
+        \newline\hspace*{3.2in} \raisebox{6.8mm}{Your members, Thesis Supervisor}
+        \newline\hspace*{3.2in} \hrulefill 
+        \newline\hspace*{3.2in} \raisebox{6.8mm}{member}
+        \newline\hspace*{3.2in} \hrulefill 
+        \newline\hspace*{3.2in} \raisebox{6.8mm}{member}
+        \newline\hspace*{3.2in} \hrulefill 
+        \newline\hspace*{3.2in} \raisebox{6.8mm}{member}
+        \newline\hspace*{3.2in} \hrulefill 
+        \newline\hspace*{3.2in} \raisebox{6.8mm}{member}
+        }
+
+\def\dedicationpage{
+	\newpage
+	\pagenumbering{roman}
+	\setcounter{page}{1}  %I did not include a dedication page so I changed the page number to 2 to have the first page after the signature page be numbered ii
+	\pagestyle{plain}
+	\singlespace
+	\vspace*{\fill}
+	\begin{quote}
+	\begin{quote}
+	\dedication
+	\end{quote}
+	\end{quote}
+	\vspace*{\fill}
+	}
+
+\def\ackpage{
+	\newpage
+	\pagestyle{plain}			%3/14/98
+	\doublespace
+	\prefacesection{Acknowledgments}
+	\indent
+	\acknowledgement
+        }
+
+\def\beforepreface{
+	%\raggedright
+	\raggedbottom
+%BEGIN JMC
+%(original)	\ifabtitlepg\abtitlepg\fi
+%(original)	\ifabstractpg\abstractpg\fi
+%(original)	\iftitlepg\titlepg\fi			%3/9/98
+%(original)	\ifcopyright\copyrightpage\fi		%3/9/98
+%(original)	\ifsignaturepage\signaturepage\fi	%3/9/98
+%(original)	\ifdedication\dedicationpage\fi		%3/9/98
+%(original)	\ifack\ackpage\fi			%3/9/98
+	\ifabtitlepg\abtitlepg\fi
+	\ifabstractpg\abstractpg\fi
+	\iftitlepg\titlepg\fi			%3/9/98
+	\ifcopyright\copyrightpage\fi		%3/9/98
+	\ifsignaturepage\signaturepage\fi	%3/9/98
+	\ifdedication\dedicationpage\fi		%3/9/98
+	\ifack\ackpage\fi			%3/9/98
+	\ifabswithesis\abswithesis\fi
+    \pagestyle{plain}
+%END JMC
+	\doublespace
+        }
+
+\def\prefacesection#1{%
+	{\setsty
+	%\null\vskip .50in 
+        \null\vskip .00in   %4-15-10
+ 	\begin{center}
+		{\normalsize \bf \uppercase{#1 \vskip 1.5\li}}   % was 2\li 4-21-10  moves text closer to ABSTRACT
+	\end{center}}
+	\setsty}
+
+\def\afterpreface{\newpage
+	\singlespace
+        %\raggedright
+	\raggedbottom
+	\iftablecontents\tableofcontents\fi
+        \addtocontents{toc}{\protect\vspace{-\li}} 
+        \addtocontents{toc}{\protect\vspace{-\li}} 
+	%\addtocontents{toc}{\hfill Page}
+        \addtocontents{toc}{\protect\vspace{\li}}
+	\newpage
+	\iftablespage
+		{\addvspace{10pt}
+		\let\saveaddvspace=\addvspace
+		\def\addvspace##1{}
+		\addcontentsline{toc}{head}{LIST OF TABLES}
+                \addtocontents{toc}{\protect\vspace{\li}}
+			%puts blank line between LIST OF TABLES and LIST OF 
+			%FIGURES in toc; use it if there is a lof
+
+                \addtocontents{lot}{\protect\vspace{-\li}}
+                \addtocontents{lot}{\protect\vspace{-\li}}
+			%added to take out extra blank lines after
+			%heading in lot
+            %    \addtocontents{lot}{Table \hfill Page}
+                \addtocontents{lot}{\protect\vspace{\li}}
+
+		\listoftables
+		\let\addvspace=\saveaddvspace}
+		\newpage
+	\fi
+	\iffigurespage
+		{\addvspace{10pt}
+		\let\saveaddvspace=\addvspace
+		\def\addvspace##1{}
+		\addcontentsline{toc}{head}{LIST OF FIGURES}
+        	%\addtocontents{toc}{\protect\vspace{\li}}
+
+                \addtocontents{lof}{\protect\vspace{-\li}}
+                \addtocontents{lof}{\protect\vspace{-\li}}
+			%added to take out extra blank lines after
+			%heading in lof
+            %    \addtocontents{lof}{Figure \hfill Page}
+                \addtocontents{lof}{\protect\vspace{\li}}
+
+		\listoffigures
+	% The next three lines put the heading "CHAPTER" before the
+	% list of chapters in the toc.  If there is not a lof, they need
+	% to be moved to the corresponding position in lot above.
+        \addtocontents{toc}{\protect\vspace{\li}}
+		\addtocontents{toc}{\hspace{-32pt} CHAPTER}
+        \addtocontents{toc}{\protect\vspace{\li}}
+		\let\addvspace=\saveaddvspace}
+		\newpage
+	\fi
+	\pagenumbering{arabic}
+	\markboth{\thepage}{\thepage}
+	\pagestyle{myheadings}
+	%\raggedright
+	\raggedbottom
+	\doublespace
+        }
+
+\makeatother
+
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %   The following flags have their default ``true''
+ %   (maybe-- be explicit just to make sure-- see below)
+ %
+ %  	\abtitlepg
+ %	    \abstractpg
+ %	    \titlepg
+ %	    \copyright
+ %	    \signaturepage
+ %	    \dedication
+ %	    \ack
+ %      \abswithesis
+ %	    \tablecontents
+ %	    \tablespage
+ %	    \figurespage
+ %
+ %  If you don't want them or you don't have them, set the
+ %  related flag to false to avoid it.
+ %  For instance, you may use \abtitlepgfalse to eliminate
+ %  the page of abstract title.
+ %  If you do want them, then be on the safe side and set
+ %  the related flag to true: for example, \acktrue
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Set flags to false 2-11-09 for comp paper

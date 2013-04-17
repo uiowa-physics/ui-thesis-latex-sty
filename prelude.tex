@@ -1,0 +1,50 @@
+% prelude.tex (specification of which features in `uithesisXX.sty' you
+% are using, your personal information, and your title & abstract)
+
+% Specify features of `uithesisXX.sty' you want to use:
+% if you do not want some of these pages, simply comment them out
+\abtitlepgtrue % special title page announcing your abstract, not to
+               % be bound with thesis (required)
+\abstractpgtrue % special version of your abstract suitable for
+                % microfilming, not to be bound with thesis (required)
+\titlepgtrue % main title page (required)
+\copyrighttrue % copyright page (optional)
+\signaturepagetrue % page for thesis committee signatures (required)
+\dedicationtrue % dedication page (optional)
+\acktrue % acknowledgments page (optional)
+\abswithesistrue % abstract to be bound with thesis (optional)
+\tablecontentstrue % table of contents page (required)
+\tablespagetrue % table of contents page for tables (required only if you
+                % have tables)
+\figurespagetrue % table of contents page for figures (required only if
+                 % you have figures)
+
+\title{YOUR TITLE HERE} % use all capital letters
+
+\author{Your Name Here} % use mixed upper & lower case
+\advisor{Professor Your Advisor} % example:
+                                       % Associate Professor John Doe
+\dept{Physics} % your academic department
+\submitdate{May 2010} % month & year of your graduation
+
+\newcommand{\abstextwithesis}
+{This is the abstract that is bound with the thesis.}
+
+\newcommand{\abstracttext}
+{This is the external abstract that you need to print, get signed, and hand in to the graduate college with your abstract title page and signature page.  I believe that the limit on this is two double spaced pages, including the signature}
+%This is the abstract to turn in for microfilming.  Specific formatting
+%  requirements (eg., limits on \#words and use of symbols and fonts) are
+%  described in the UMI Microfilming guide, which you can get from the
+%  Graduate College.  It's required. }
+
+\newcommand{\dedication}
+{ This is optional; start with the word ``To''; you do not need to end with
+  a period }
+
+\newcommand{\acknowledgement}
+{ This is also optional.  Use complete sentences here. }
+
+% Take care of things in `uithesisXX.sty' behind the scenes (it sounds
+% weird, but you need these commands):
+\beforepreface
+\afterpreface

@@ -1,0 +1,39 @@
+% comp-v2.tex (starting point of my thesis)
+
+% Declare overall type of document (use 12pt report class):
+\documentclass[letterpaper,12pt]{report}
+
+% Import uithesisXX.sty file:
+%these are the tex packages that I used, yours may be different
+\usepackage{epsfig} 
+\usepackage{amssymb} 
+\usepackage{amsmath} 
+\usepackage{amsfonts} 
+%this is the style file
+\usepackage{uidiss10}
+
+% Specify which pieces (other .tex files) you plan to include later:
+\includeonly{
+prelude,
+newcom,
+ch1,
+ch2,
+%ECT ...
+app0,  %Needed for spacing and table of contents entry
+app1,
+bibliography
+}
+
+
+\begin{document}
+
+% Include all of the other pieces of your thesis:
+\include{prelude}
+\include{newcom}
+\include{ch1}
+\include{ch2}
+\include{app0}
+\include{app1}
+\include{bibliography}
+
+\end{document}
