@@ -5,17 +5,23 @@
 
 % Import uithesisXX.sty file:
 %these are the tex packages that I used, yours may be different
-\usepackage{epsfig} 
-\usepackage{amssymb} 
-\usepackage{amsmath} 
-\usepackage{amsfonts} 
-%this is the style file
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{pbox}
+\usepackage{multirow}
+\usepackage[justification=justified,labelformat=simple]{caption}
+\usepackage[section]{placeins}
 \usepackage{uidiss10}
+\usepackage{natbib}
+\usepackage{wrapfig}
+\usepackage{subfigure}
+%\usepackage[usenames]{color}
 
 % Specify which pieces (other .tex files) you plan to include later:
 \includeonly{
 prelude,
-newcom,
 ch1,
 ch2,
 %ECT ...
@@ -29,11 +35,10 @@ bibliography
 
 % Include all of the other pieces of your thesis:
 \include{prelude}
-\include{newcom}
 \include{ch1}
 \include{ch2}
-\include{app0}
-\include{app1}
+%\include{app0}
+%\include{app1}
 \include{bibliography}
 
 \end{document}

@@ -25,7 +25,7 @@
 % \dedicationtrue, \dedicationfalse
 % \acktrue, \ackfalse
 % \abswithesistrue, \abswithesisfalse
-% \tablecontentstrue, \tablecontentsfalse
+% \contentstrue, \tablecontentsfalse
 % \tablespagetrue, \tablespagefalse
 % \figurespagetrue, \figurespagefalse
 % \title, \author, \advisor, \submitdate
@@ -150,23 +150,27 @@
  % 05/15/97 setting all flags to false.  See comments at end of this file.
 
 \newcommand{\xyztf}{true}
-\makeatletter \voffset=-.20in \hoffset=0.00in \oddsidemargin 0.54in
-\evensidemargin 0.54in \marginparwidth 40pt \marginparsep 10pt
-\topmargin 0pt \headsep .00in		%changing \headsep, 8/26/97
+\makeatletter \voffset=-.20in \hoffset=0.00in 
+%\oddsidemargin 0.54in \evensidemargin 0.54in 
+\oddsidemargin 0.50in \evensidemargin 0.50in 
+\marginparwidth 40pt \marginparsep 10pt
+%\topmargin 0pt \headsep .00in		%changing \headsep, 8/26/97
 %\topmargin 0pt \headsep .35in
-\addtolength{\headsep}{.05in}
-\addtolength{\topmargin}{-.05in}
+\topmargin -0.5in \headsep 0.5in
+%\addtolength{\headsep}{.05in}
+%\addtolength{\topmargin}{-.05in}
 %
-\footskip 44pt
-\addtolength{\footskip}{.06in}
+%\footskip 44pt % PEK
+%\addtolength{\footskip}{.06in} % PEK
 \newlength{\tw} \setlength{\tw}{6in}
-\newlength{\thnew} \setlength{\thnew}{8.8in plus 0.50in} %changed from 8.3in reduced empty space at bottom of page
+%\newlength{\thnew} \setlength{\thnew}{8.8in plus 0.50in} %changed from 8.3in reduced empty space at bottom of page
+\newlength{\thnew} \setlength{\thnew}{9.35in} % Kazuma here!!!
 \newlength{\li} \setlength{\li}{12pt}
 \newlength{\si} \setlength{\si}{.4in}  
 \setlength{\parindent}{\si}
 \textheight \thnew \textwidth \tw
 \brokenpenalty=10000
-\addtolength{\textwidth}{-0.12in}	%Adding this line, 8/24/97.
+%\addtolength{\textwidth}{-0.12in}	%Adding this line, 8/24/97.
 
 \setlength{\parindent}{\si}
 \newcommand{\singlespace}{\baselineskip 1.1\li}
@@ -239,7 +243,7 @@
 \newcommand{\Chapter}[1]{\def\thechapter{\arabic{chapter}}
             \renewcommand{\myvskip}{.50in}
             \setcounter{equation}{0}
-			\setcounter{figure}{0}
+	    \setcounter{figure}{0}
             \setcounter{table}{0}
 %END JMC
                         \chapter{#1}
@@ -322,7 +326,7 @@
         \addtocontents{toc}{\protect\vspace{\li}}   %spacing 4-13-10
 %if you do not have sections in your last chapter comment out the above line
         %\addtocontents{toc}{\protect\vspace{-\li}}
-		\addtocontents{toc}{\hspace{-32pt} APPENDIX}
+%%		\addtocontents{toc}{\hspace{-32pt} APPENDIX}
         \addtocontents{toc}{\protect\vspace{\li}}}
 % (put space between designator and title) \newcommand{\Appendix}[1]
 %   {\chapter[#1]{\vspace{1\li}#1}
@@ -554,7 +558,7 @@
 	\begin{center}
 		{\normalsize Copyright by\\ \vskip 1pt  
 		{\normalsize\uppercase\expandafter{\@author}}\\ \vskip 1 pt
-		1998\\ \vskip 1pt
+		2012\\ \vskip 1pt
                 All Rights Reserved}
 	\end{center}
 	\vskip 1.0in
@@ -600,21 +604,21 @@
         \hspace*{1.54in} graduation. 
         \vfill
         \hspace*{1.41in} Thesis Committee:  \hrulefill
-        \newline\hspace*{3.2in} \raisebox{6.8mm}{Your members, Thesis Supervisor}
+        \newline\hspace*{3.2in} \raisebox{6.8mm}{Philip Kaaret, Thesis Supervisor}
         \newline\hspace*{3.2in} \hrulefill 
-        \newline\hspace*{3.2in} \raisebox{6.8mm}{member}
+        \newline\hspace*{3.2in} \raisebox{6.8mm}{Randall McEntaffer}
         \newline\hspace*{3.2in} \hrulefill 
-        \newline\hspace*{3.2in} \raisebox{6.8mm}{member}
+        \newline\hspace*{3.2in} \raisebox{6.8mm}{Kenneth Gayley}
         \newline\hspace*{3.2in} \hrulefill 
-        \newline\hspace*{3.2in} \raisebox{6.8mm}{member}
+        \newline\hspace*{3.2in} \raisebox{6.8mm}{Craig Kletzing}
         \newline\hspace*{3.2in} \hrulefill 
-        \newline\hspace*{3.2in} \raisebox{6.8mm}{member}
+        \newline\hspace*{3.2in} \raisebox{6.8mm}{Craig Markwardt}
         }
 
 \def\dedicationpage{
 	\newpage
 	\pagenumbering{roman}
-	\setcounter{page}{1}  %I did not include a dedication page so I changed the page number to 2 to have the first page after the signature page be numbered ii
+	\setcounter{page}{2}  % PEK
 	\pagestyle{plain}
 	\singlespace
 	\vspace*{\fill}
@@ -668,7 +672,8 @@
 	\end{center}}
 	\setsty}
 
-\def\afterpreface{\newpage
+\def\afterpreface{
+	\newpage
 	\singlespace
         %\raggedright
 	\raggedbottom

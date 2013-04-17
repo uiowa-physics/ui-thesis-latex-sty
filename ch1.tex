@@ -1,9 +1,39 @@
 %chapter 1
 
-\Chapter{NAME IN CAPS}
+\Chapter{NAME IN CAPS}	 %\label{sec:Intro} <- this is optional
 
 \section{Mixed Case} 
 sections look like this 
 
 \subsection{Mixed Case}
 subsections look like this
+
+% \citet{Oppenheimer} creates a textual citation: Oppenheimer et al. (1939)
+% \citep{Oppenheimer} creates a parenthetical citation: (Oppenheimer et al., 1939)
+
+% EXAMPLE FIGURE:
+%\begin{figure}[h]
+%\begin{center}
+%\includegraphics[width=3in]{accretion.png}
+%\end{center}
+%\caption[Accretion geometry\vspace{\li}]{Two forms of accretion are depicted.  At top, the %companion star has evolved to fill its Roche lobe, causing matter to fall into the black hole %through the inner Lagrangian point.  At bottom, a strong stellar wind from the companion star %feeds matter into the black hole.  From: \citet{Shakura73}\label{fig:roche}}
+%\end{figure}
+
+% EXAMPLE TABLE:
+%\begin{table}
+%\centering
+%\caption[Remillard \& McClintock state definitions\vspace{\li}]{Remillard \& McClintock State Definitions}
+%\label{tab:statedef}
+%\footnotesize
+%\begin{tabular}{c | p{3.5in}}
+%\hline \hline
+%State Name & Properties \\
+%\hline \hline
+%Thermal & \pbox{3.5in}{\vspace{5pt} Disk fraction $f>75\%$ \\ QPOs absent or weak $a_{\rm max}<0.005$ \\ Power continuum level $r<0.075$} \vspace{5pt} \\
+%\hline
+%Hard & \pbox{3.5in}{\vspace{5pt} Disk fraction $f<20\%$ \\ $1.4<\Gamma<2.1$ \\ Power continuum level $r>0.1$ \vspace{5pt}} \\
+%\hline
+%Steep Power Law & \pbox{3.5in}{\vspace{5pt}$\Gamma>2.4$ \\ Power continuum level $r<0.15$ \\ Either $f<0.8$ and 0.1--30 Hz QPOs present with $a>0.01$ \\ or disk fraction $f<50\%$ with no QPOs \vspace{5pt}} \\
+%\hline\hline
+%\end{tabular}
+%\end{table}
